@@ -2,9 +2,10 @@
     "builders": [
         {
             "type": "amazon-ebs",
-            "region": "eu-west-1",
+            "region": "ap-southeast-2",
             "instance_type": "t2.micro",
-            "ami_name": "Bamboo Server 6.1 {{timestamp}}",
+            "ami_name": "Caris 11.2 {{timestamp}}",
+            "iam_instance_profile": "ec2_instance_s3_profile",
             "user_data_file": "./scripts/SetUpWinRM.ps1",
             "communicator": "winrm",
             "winrm_username": "Administrator",
@@ -12,7 +13,7 @@
             "winrm_insecure": true,
             "source_ami_filter": {
                 "filters": {
-                  "name": "Windows_Server-2012-R2_RTM-English-64Bit-Base-*"
+                  "name": "Windows_Server-2019-English-Full-Base-*"
                 },
                 "owners": ["801119661308"],
                 "most_recent": true
@@ -23,10 +24,10 @@
         {
             "type": "powershell",
             "scripts": [
-                "./scripts/EC2Config.ps1",
-                "./scripts/BundleConfig.ps1",
-                "./scripts/SetUpDevTools.ps1",
-                "./scripts/InstallBambooServer.ps1"
+                "./scripts/InstallAWSCLI.ps1",
+                "./scripts/InstallCaris.ps1",
+                "./scripts/SetUpSsh.ps1"
+                
             ]
         },
         {
@@ -43,7 +44,14 @@
             "source": "TestResults.xml",
             "destination": "TestResults.xml",
             "direction": "download"
-        }
+        },
+        {
+            "type": "powershell",
+            "inline": [
+            "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\InitializeInstance.ps1 -Schedule",
+            "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\SysprepInstance.ps1 -NoShutdown"
+            ]
+            }
     ],
     "post-processors": [
         {
