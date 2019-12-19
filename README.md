@@ -1,4 +1,4 @@
-# Packer AMI build for Bamboo 6 on Win 2012 R2 & .Net 4.5.2
+# Packer AMI build for Caris 11.2.3 on Windows 2019 Server
 This script creates an AMI with Caris, Openssh , awscli.
 
 ## Requirements
