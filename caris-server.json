@@ -25,6 +25,7 @@
             "type": "powershell",
             "scripts": [
                 "./scripts/InstallAWSCLI.ps1",
+                "./scripts/InstallTenableClient.ps1",
                 "./scripts/InstallCaris.ps1",
                 "./scripts/SetUpSsh.ps1"
                 
