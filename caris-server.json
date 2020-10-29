@@ -4,7 +4,7 @@
             "type": "amazon-ebs",
             "region": "ap-southeast-2",
             "instance_type": "t2.micro",
-            "ami_name": "Caris 11.2 {{timestamp}}",
+            "ami_name": "Caris 11.3.9 {{timestamp}}",
             "iam_instance_profile": "ec2_instance_s3_profile",
             "user_data_file": "./scripts/SetUpWinRM.ps1",
             "communicator": "winrm",
